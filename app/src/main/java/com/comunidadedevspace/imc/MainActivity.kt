@@ -15,11 +15,12 @@ class MainActivity : AppCompatActivity() {
         val editHeight = findViewById<TextInputEditText>(R.id.edtHeight)
         val btnCalculate = findViewById<Button>(R.id.btnCalculate)
 
-        val weight = editWeight.text
-        val height = editHeight.text
-
         btnCalculate.setOnClickListener(){
-
+            val weight: Float = editWeight.text.toString().toFloat()
+            val height: Float = editHeight.text.toString().toFloat()
+            val heightQ2: Float = height * height
+            val IMCresult: Float = weight / heightQ2
+            println(IMCresult)
         }
 
     }
