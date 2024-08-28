@@ -3,6 +3,7 @@ package com.comunidadedevspace.imc
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -16,11 +17,24 @@ class MainActivity : AppCompatActivity() {
         val btnCalculate = findViewById<Button>(R.id.btnCalculate)
 
         btnCalculate.setOnClickListener(){
-            val weight: Float = editWeight.text.toString().toFloat()
-            val height: Float = editHeight.text.toString().toFloat()
-            val heightQ2: Float = height * height
-            val IMCresult: Float = weight / heightQ2
-            println(IMCresult)
+
+            val weightStr: String = editWeight.text.toString()
+            val heightStr: String = editHeight.text.toString()
+
+            if(weightStr.isEmpty() || heightStr.isEmpty()) {
+                Snackbar
+                    .make(
+                        editWeight,
+                        "Preencha todos os campos",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+            } else {
+                val height: Float = heightStr.toFloat()
+                val weight: Float = weightStr.toFloat()
+                val heightQ2: Float = height * height
+                val IMCresult: Float = weight / heightQ2
+                println(IMCresult)
+            }
         }
 
     }
